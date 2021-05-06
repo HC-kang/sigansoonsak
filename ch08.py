@@ -153,7 +153,72 @@ greet('철수')
 # 디폴트 인수
 def greet(name, msg = '잘 지내죠?'):
     print('안녕', name + ', '+msg)
-greet('철수')
+greet('영희')
+
+# 키워드 인수
+def calc(x, y):
+    return x-y
+
+print(calc(10, 20))
+print(calc(20, 10))
+
+def calc(x, y):
+    return x-y
+
+print(calc(x = 10, y = 20))
+print(calc(y = 20, x = 10))
+
+# 주의사항
+def calc(x,y,z):
+    return x+y+z
+
+print(calc(10, y=20, z=30))
+print(calc(x=10, 20, 30))
+print(calc(20, 30, x=10))
+
+def func1(x, y, z):
+    return x*y*z
+
+func1(1,3,5)
+func1(y=7, z = 5, x = 2)
+func1(z=2, x=4, y=5)
+func1(5, z=10, y=2)
+func1(z=10, 20, x=2)
+func1(5, x=2, z=20)
 
 
+#####
+# BMI 계산기
+###
 
+def calc_BMI():
+    weight = float(input('체중(kg)을 입력하세요. : '))
+    height = float(input('키(cm)를 입력하세요. : ')) / 100
+    BMI = weight / height**2
+    return BMI
+
+calc_BMI()
+
+#####
+# 환전계산기
+###
+def cal_money():
+    rate_dict = {
+        '미국' : ['달러', 1182.5], 
+        '일본' : ['엔', 1.07814],
+        '유럽' : ['유로', 1286.74],
+        '중국' : ['위안', 169.22]
+    }
+    money = int(input('환전 금액(원)을 입력하세요 : '))
+    country = input('국가를 입력하세요 : ')
+    if country in rate_dict:
+        print('{0} 원은 {1} {2} 입니다.'.format(money, round(money / rate_dict[country][1], 2), rate_dict[country][0]))
+    else:
+        print('해당 국가의 정보가 없습니다.')
+
+cal_money()
+
+#####
+# N각형을 그리는 함수 작성
+###
+# 아 터틀좀 제발
