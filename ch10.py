@@ -172,3 +172,74 @@ for line in data :
 print("강원도 2009년 01월 부터 2019년 09월까지의 총 강수량: ", sum)
 print("강원도 2009년 01월 부터 2019년 09월까지의 평균 강수량: ", sum / count)
 infile.close( )
+
+######
+import random
+infile = open('/Users/heechankang/projects/pythonworkspace/sigansoonsak/hangman.txt', 'r')
+lines = infile.readlines()
+lines
+word = random.choice(lines)
+word
+user_pick = []
+cnt = 10
+while cnt>0: # 일단 작동상태 확인
+    if cnt<=0:
+        running = False
+    # 현재 상태 보여주기
+    print('남은 기회 : '+str(cnt))
+    for i in word:
+        if i in user_pick:
+            print("'{}'".format(i), end='')
+        else:
+            print("'_'".format(i), end='')
+    print()
+    # User에게 단어선택 기회
+    char = input('알파벳 선택? : ')
+    user_pick.append(char)
+    if char in word:
+        print('맞춤. 기회 -1')
+        print()
+    else:
+        print('틀림. 기회 -1')
+        print()
+    cnt-=1
+
+    if sorted(user_pick) == sorted(list(word)):
+        print('이겼습니다.')
+        break
+    else:
+        print('졌습니다')
+infile.close()
+
+
+
+import random
+
+# 입력 파일 열기
+infile = open('/Users/heechankang/projects/pythonworkspace/sigansoonsak/hangman.txt', 'r')
+lines = infile.readlines( )
+word = random.choice(lines).rstrip( )
+solution = list(word)   
+result = list('_' * len(word))     # list()는 문자열을 받아서 리스트로 변환합니다. 
+turns = 10
+
+while turns > 0:
+    guess = input("단어를 추측하세요: ")
+    turns -= 1
+    i = 0
+
+    for c in word:
+         if c == guess:
+              result[i] = c
+         i += 1
+
+    print(result)
+
+    if result == solution:
+        print("성공입니다.")           
+        break
+
+    if turns <= 0 :
+        print("실패하였습니다.")           
+        break
+infile.close( )
